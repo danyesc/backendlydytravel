@@ -17,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log('Conectado a MongoDB'))
     .catch(err => console.error('Error al conectar con MongoDB:', err));
 
-const cors = require('cors');
 
 // Configura CORS para permitir solicitudes desde tu frontend
 const corsOptions = {
