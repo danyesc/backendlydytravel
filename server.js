@@ -17,7 +17,16 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log('Conectado a MongoDB'))
     .catch(err => console.error('Error al conectar con MongoDB:', err));
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+const cors = require('cors');
+
+// Configura CORS para permitir solicitudes desde tu frontend
+const corsOptions = {
+  origin: 'https://lydytravel.site',  // Permitir solo solicitudes desde este dominio
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Permitir estos métodos HTTP
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Permitir estos encabezados
+};
+
+app.use(cors(corsOptions));  // Habilitar CORS con la configuración
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
