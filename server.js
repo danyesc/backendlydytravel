@@ -26,6 +26,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));  // Habilitar CORS con la configuración
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
