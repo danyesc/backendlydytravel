@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');  // Modelo de MongoDB para usuarios
+const User = require('../models/User');  // Asegúrate de que este modelo esté correctamente configurado
 
 // Registrar un nuevo usuario
 router.post('/register', [
@@ -35,7 +35,11 @@ router.post('/register', [
         res.status(201).json({ message: 'Usuario registrado con éxito', nombre });
     } catch (error) {
         console.error('Error al registrar el usuario:', error);
-        res.status(500).json({ message: 'Error al registrar usuario', error: error.message });
+        res.status(500).json({
+            message: 'Error al registrar usuario',
+            error: error.message,  // Detalle adicional para depuración
+            stack: error.stack      // Información de la pila si es necesario
+        });
     }
 });
 
@@ -67,7 +71,11 @@ router.post('/login', async (req, res) => {
             { expiresIn: '1h' } // Expira en 1 hora
         );
 
-        res.json({ message: 'Inicio de sesión exitoso', token, nombre: user.nombre });
+        res.json({
+            message: 'Inicio de sesión exitoso',
+            token,
+            nombre: user.nombre
+        });
     } catch (error) {
         console.error('Error en el servidor:', error);
         res.status(500).json({ message: 'Error en el servidor', error: error.message });
