@@ -23,6 +23,8 @@ const corsOptions = {
     origin: 'https://lydytravel.site',  // Permitir solo solicitudes desde este dominio
     methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Permitir estos métodos HTTP
     allowedHeaders: ['Content-Type', 'Authorization'],  // Permitir estos encabezados
+    credentials: true // IMPORTANTE: Permite el envío de cookies y autenticación
+};
   };
   
   app.use(cors(corsOptions));  // Habilitar CORS con la configuración
