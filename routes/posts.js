@@ -45,6 +45,7 @@ router.get('/', async (req, res) => {
             .skip(offset)
             .limit(limit)
             .populate('user_id', 'nombre') // Esto reemplaza el JOIN con MongoDB
+            .lean();
             .exec();
 
         res.json({ page, limit, results: posts });
