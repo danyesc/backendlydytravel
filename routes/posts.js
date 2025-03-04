@@ -45,6 +45,8 @@ router.get('/', async (req, res) => {
             .skip(offset)
             .limit(limit)
             .populate('user_id', 'nombre') // Esto reemplaza el JOIN con MongoDB
+            console.log('Posts enviados al frontend:', posts); // Agregar este log
+
 
         res.json({ page, limit, results: posts });
     } catch (err) {
